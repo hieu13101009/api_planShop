@@ -1,9 +1,15 @@
 version: '3'
 services:
   web:
-    image: nginx
+    image: nginx:latest
     ports:
-     - "81:80"
+     - "80:80"
     restart: always
     volumes:
       - ./default.conf:/etc/nginx/default.conf
+  mongodb:
+    image: mongo
+    container_name: mongodb
+    restart: always
+    ports:
+      - "27017:27017"
