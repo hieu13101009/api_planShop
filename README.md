@@ -12,4 +12,7 @@
 # check mongodb
 # //go to mongodb database shell
 # docker exec -it mongodb bash
+# mongodb here is container_name: mongodb, u can docker container ps for use container id like this: 2d3e9dbd76af
 # show dbs //more detail: https://docs.mongodb.com/manual/reference/mongo-shell/
+# 
+# docker run -it --rm node /bin/bash -c 'node --version'
