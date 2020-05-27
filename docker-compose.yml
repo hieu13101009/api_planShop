@@ -1,9 +1,9 @@
-version: '3'
+version: '3.7'
 services:
   web:
     image: nginx:latest
     ports:
-     - "3000:80"
+     - "80:80"
     restart: always
     volumes:
       - ./default.conf:/etc/nginx/default.conf
@@ -14,5 +14,12 @@ services:
     ports:
       - "27017:27017"
   app:
-    image: node:latest
-    restart: always
+    build: .
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./:/usr/src/app:delegated
+      - node_modules:/usr/src/app/node_modules:delegated
+volumes:
+  npm_cache:
+  node_modules:
