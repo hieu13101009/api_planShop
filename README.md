@@ -8,7 +8,7 @@
 # sudo systemctl start docker
 # first time run "docker-compose up -d" need permission. ( issue same like: "add docker group", or smt like that)
 # sudo usermod -aG docker $USER
-# Note:  after add group, exit form machin and vagrant ssh again. (yes! it's go out side off vitual machin and come again by)
+# Note:  after add group, exit form machin and vagrant ssh again. (yes! it's go out side off virtual machin and come again.)
 # 
 # check mongodb
 # //go to mongodb database shell

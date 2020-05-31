@@ -3,11 +3,9 @@
   "version": "1.0.0",
   "description": "Node.js on Docker",
   "author": "First Last <first.last@example.com>",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node app.js",
-    "dev": "nodemon app.js"
+    "start": "node app.js"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
