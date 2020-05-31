@@ -5,7 +5,8 @@
   "author": "First Last <first.last@example.com>",
   "main": "app.js",
   "scripts": {
-    "start": "node app.js"
+    "start": "node app.js",
+    "start.dev": "nodemon"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",

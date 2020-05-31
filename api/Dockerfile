@@ -1,5 +1,6 @@
 FROM node:12
 
+RUN npm install -g pm2
 # Create app directory
 WORKDIR /usr/src/app
 
@@ -16,4 +17,6 @@ RUN npm install
 COPY . .
 
 EXPOSE 8080
-CMD [ "node", "app.js" ]
+
+#CMD [ "npm", "run", "start.dev"]
+#CMD [ "pm2-runtime", "start", "ecosystem.config.js" ]
