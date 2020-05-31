@@ -23,6 +23,7 @@ router.get('/', function (req, res) {
 })
 
 router.post('/sigup', async (req, res) =>{
+    console.log('1111')
     const result = Joi.validate(req.body, schema);
     var User = mongoose.model('User', userSchema);
     if (result.error) {

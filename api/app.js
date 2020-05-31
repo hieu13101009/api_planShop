@@ -11,7 +11,7 @@ const HOST = '0.0.0.0';
 const app = express();
 app.use(express.json());
 app.use(cors({
-    origin: 'http://locallhost:3000'
+    origin: 'http://192.168.1.2:3000'
 }))
 app.get('/', (req, res) => {
     res.send('Hello World');
