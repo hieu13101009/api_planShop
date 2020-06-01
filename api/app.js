@@ -11,11 +11,11 @@ const HOST = '0.0.0.0';
 const app = express();
 app.use(express.json());
 app.use(cors({
-    origin: 'http://192.168.1.2:3000'
+    origin: '*'
 }))
 app.get('/', (req, res) => {
-    res.send('Hello World');
-    console.log('---------2---------');
+    res.send('Hello Worlds');
+    console.log('---------11111---------');
 });
 app.use('/auth',auth);
 app.use(volleyball);

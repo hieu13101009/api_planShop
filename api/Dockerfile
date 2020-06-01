@@ -18,5 +18,4 @@ COPY . .
 
 EXPOSE 8080
 
-#CMD [ "npm", "run", "start.dev"]
-#CMD [ "pm2-runtime", "start", "ecosystem.config.js" ]
+CMD [ "pm2-runtime", "start", "ecosystem.config.js" ]
