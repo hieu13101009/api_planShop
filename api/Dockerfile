@@ -1,5 +1,5 @@
 FROM node:12
-
+RUN npm config set registry http://registry.npmjs.org/
 RUN npm install -g pm2
 # Create app directory
 WORKDIR /usr/src/app

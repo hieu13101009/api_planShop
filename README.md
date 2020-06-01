@@ -18,3 +18,7 @@
 # show dbs //more detail: https://docs.mongodb.com/manual/reference/mongo-shell/
 # 
 # docker run -it --rm node /bin/bash -c 'node --version'
+
+# issue wwith http and https
+# https://stackoverflow.com/questions/12913141/message-failed-to-fetch-from-registry-while-trying-to-install-any-module
+# RUN npm config set registry http://registry.npmjs.org/
