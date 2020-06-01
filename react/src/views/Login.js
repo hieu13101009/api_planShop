@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-const Login_URL = 'http://localhost:3100/auth/Login';
+const Login_URL = 'http://192.168.33.21:8080/auth/login';
 
 class Login extends Component {
     constructor(props) {
@@ -20,41 +20,33 @@ class Login extends Component {
 
     formSubmitted = (event) => {
         event.preventDefault();
-        const param =  {
+        const body = {
             username: this.state.username,
-            password: this.state.password,
-            confPassword: this.state.confPassword
-        }
-        console.log('param',param)
+            password: this.state.password
+        };
+        console.log('body',body)
 
-        if(this.state.password !== this.state.confPassword) {
-            console.log('no same')
-        } else {
-            const body = {
-                username: this.state.username,
-                password: this.state.password
-            };
-    
-            fetch(Login_URL, {
-                method: 'POST',
-                body: JSON.stringify(body),
-                headers: {
-                    'content-type': 'application/json'
-                }
-            }).then(Response => {
-                if (Response.ok) {
-                    return Response.json();
-                }
-    
-                return Response.json().then(error => {
-                    throw new Error(error.message)
-                })
-            }).then(user => {
-                console.log(user);
-            }).catch((error) => {
-                console.log(error);
+
+        fetch(Login_URL, {
+            method: 'POST',
+            body: JSON.stringify(body),
+            headers: {
+                'content-type': 'application/json'
+            }
+        }).then(Response => {
+            if (Response.ok) {
+                return Response.json();
+            }
+
+            return Response.json().then(error => {
+                throw new Error(error.message)
             })
-        }
+        }).then(user => {
+            console.log(user);
+        }).catch((error) => {
+            console.log(error);
+        })
+    
     }
 
     render() {

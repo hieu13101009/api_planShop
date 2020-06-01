@@ -14,8 +14,7 @@ app.use(cors({
     origin: '*'
 }))
 app.get('/', (req, res) => {
-    res.send('Hello Worlds');
-    console.log('---------11111---------');
+    res.send('Hello World');
 });
 app.use('/auth',auth);
 app.use(volleyball);

@@ -1,6 +1,7 @@
 const express = require('express')
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
 const router = express.Router()
 
 const Joi = require('joi');
@@ -8,7 +9,7 @@ const db = require('../db/connection')
 
 const Schema = mongoose.Schema;
 
-var userSchema = new Schema({
+const userSchema = new Schema({
     username: String,
     password: {type: String, required: true},
 });
@@ -23,9 +24,8 @@ router.get('/', function (req, res) {
 })
 
 router.post('/sigup', async (req, res) =>{
-    console.log('1111')
     const result = Joi.validate(req.body, schema);
-    var User = mongoose.model('User', userSchema);
+    const User = mongoose.model('User', userSchema);
     if (result.error) {
         res.send(result.error.details)
     } else {
@@ -44,6 +44,36 @@ router.post('/sigup', async (req, res) =>{
             res.send(JSON.stringify(mess))
         }
     }
+})
+
+router.post('/login', async (req, res) =>{
+    console.log('--------------login-------------')
+    const result = Joi.validate(req.body, schema);
+    const User = mongoose.model('User', userSchema);
+    if (result.error) {
+        res.send(result.error.details)
+    } else {
+        const user = await User.findOne({ username: req.body.username });
+        if (user) {
+            bcrypt.compare(req.body.password, user.password).then((result) => {
+                if (result) {
+                    const dataToken = {
+                        _id: user._id,
+                        username: user.username
+                    }
+                    const data = jwt.sign(dataToken, 'qweascxzcasdwqeasxghjrtyfb', { expiresIn: '1d' });
+                    res.send(JSON.stringify(data))
+                }else {
+                    const mess = 'can not loginnn';
+                    res.send(JSON.stringify(mess))
+                }
+            });
+        } else {
+            const mess = 'can not loginl';
+            res.send(JSON.stringify(mess))
+        }
+    }
+
 })
 
 module.exports = router
