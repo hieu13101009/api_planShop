@@ -3,7 +3,7 @@ services:
   web:
     image: nginx:latest
     ports:
-     - "80:80"
+      - "80:80"
     restart: always
     volumes:
       - ./default.conf:/etc/nginx/default.conf
