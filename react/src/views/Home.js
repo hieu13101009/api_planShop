@@ -18,6 +18,12 @@ class Home extends Component {
                     <p className="lead">
                         <Link to="/Signup">Signup</Link>
                     </p>
+                    <p className="lead">
+                        <Link to="/login">Login</Link>
+                    </p>
+                    <p className="lead">
+                        <Link to="/login">Go to index</Link>
+                    </p>
                 </div>
             </div>
         );

@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { Route, Redirect } from "react-router-dom";
+
 const Login_URL = 'http://192.168.33.21:8080/auth/login';
 
 class Login extends Component {
@@ -7,9 +9,19 @@ class Login extends Component {
         this.state = {
             username: '',
             password: '',
+            isData: false,
+            directScreen: ''
         }
     }
-
+    
+    componentDidMount = () => {
+        if (localStorage.token) {
+            this.setState({
+                isData: true,
+                directScreen: 'Indexss'
+            })
+        }
+    }
 
     onChangeText = (event) => {
         this.setState({ username: event.target.value })
@@ -42,7 +54,20 @@ class Login extends Component {
                 throw new Error(error.message)
             })
         }).then(user => {
-            console.log(user);
+            console.log('abcd',user);
+            if (user.code !== '001') {
+                this.setState({
+                    isData: true,
+                    directScreen: 'Home'
+                })
+            } else {
+                this.setState({
+                    isData: true,
+                    directScreen: 'Indexss'
+                })
+                localStorage.token = user
+            }
+
         }).catch((error) => {
             console.log(error);
         })
@@ -51,7 +76,14 @@ class Login extends Component {
 
     render() {
         return (
-            <div style={{textAlign: 'center'}}>
+            this.state.isData ? (
+                <Redirect
+                to={{
+                    pathname: this.state.directScreen,
+                }}
+                />
+            ) : (
+                <div style={{textAlign: 'center'}}>
                 <div >
                     <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
                         <a className="navbar-brand" href="/">Api view</a>
@@ -84,6 +116,7 @@ class Login extends Component {
                     </div>
                 </form>
             </div>
+            )
         );
     }
 }
