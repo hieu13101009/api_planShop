@@ -62,7 +62,11 @@ router.post('/login', async (req, res) =>{
                         username: user.username
                     }
                     const data = jwt.sign(dataToken, 'qweascxzcasdwqeasxghjrtyfb', { expiresIn: '1d' });
-                    res.send(JSON.stringify(data))
+                    const result = {
+                        data: data,
+                        code: '001'
+                    }
+                    res.send(JSON.stringify(result))
                 }else {
                     const mess = 'can not loginnn';
                     res.send(JSON.stringify(mess))
