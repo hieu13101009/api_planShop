@@ -18,7 +18,7 @@ class Login extends Component {
         if (localStorage.token) {
             this.setState({
                 isData: true,
-                directScreen: 'Indexss'
+                directScreen: 'Index'
             })
         }
     }
@@ -61,11 +61,11 @@ class Login extends Component {
                     directScreen: 'Home'
                 })
             } else {
+                localStorage.token = user
                 this.setState({
                     isData: true,
-                    directScreen: 'Indexss'
+                    directScreen: 'Index'
                 })
-                localStorage.token = user
             }
 
         }).catch((error) => {

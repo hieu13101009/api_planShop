@@ -9,7 +9,6 @@ import Signup from './views/Signup'
 import Login from './views/Login'
 import Home from './views/Home'
 import Index from './views/Index'
-import Indexss from './views/Indexss'
 
 import { ProtectedRoute,  } from "./router/ProtectedRoute";
 
@@ -21,7 +20,6 @@ function App() {
       <Switch>
         <Route exact path="/" component={Home} />
         <ProtectedRoute exact path="/Index" component={Index} />
-        <Route path="/Indexss" component={Indexss} />
         <Route path="/Signup" component={Signup} />
         <Route path="/Login" component={Login} />
         <Redirect to="/" />

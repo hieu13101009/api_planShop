@@ -22,7 +22,7 @@ class Home extends Component {
                         <Link to="/login">Login</Link>
                     </p>
                     <p className="lead">
-                        <Link to="/login">Go to index</Link>
+                        <Link to="/index">Go to index</Link>
                     </p>
                 </div>
             </div>
