@@ -1,6 +1,8 @@
 const express = require('express');
+const middleware = require('./auth/middleware');
 const volleyball = require('volleyball');
 const auth = require('./auth/index.js');
+const notes = require('./routers/index.js')
 const cors = require('cors');
 
 // Constants
@@ -16,15 +18,14 @@ app.use(cors({
     origin: '*'
 }))
 
-app.use((req, res, next) => {
-    console.log('every thing go here');
-    next();
-});
+app.use(middleware.checkTokenSetUser);
 
 app.get('/', (req, res) => {
     res.send('Hello World');
 });
+
 app.use('/auth',auth);
+app.use('/api/v1/notes', middleware.isLoggedIn, notes);
 
 app.listen(PORT, HOST);
 console.log(`Running on http://${HOST}:${PORT}`);

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Route, Redirect } from "react-router-dom";
 
-const Login_URL = 'http://192.168.33.12:8080/auth/login';
+const Login_URL = 'http://192.168.33.21:8080/auth/login';
 
 class Login extends Component {
     constructor(props) {

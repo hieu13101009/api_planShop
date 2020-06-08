@@ -11,7 +11,7 @@ class Home extends Component {
                     <a className="navbar-brand" href="#">Api view</a>
                 </nav>
                 <div className="jumbotron">
-                    <h1 className="display-3">Auth</h1>
+                    <h1 className="display-3">Home</h1>
                     <p className="lead">This is a simple Auth.</p>
                     <hr className="my-4"/>
                     <p>Welcome to Auth.</p>

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-const SIGNUP_URL = 'http://192.168.33.12:8080/auth/sigup';
+const SIGNUP_URL = 'http://192.168.33.21:8080/auth/sigup';
 
 class Signup extends Component {
     constructor(props) {
