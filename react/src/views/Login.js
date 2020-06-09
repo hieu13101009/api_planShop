@@ -61,7 +61,7 @@ class Login extends Component {
                     directScreen: 'Home'
                 })
             } else {
-                localStorage.token = user
+                localStorage.token = user.data
                 this.setState({
                     isData: true,
                     directScreen: 'Index'

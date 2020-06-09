@@ -28,7 +28,7 @@ class Index extends Component {
     formSubmitted =(event) => {
         const body = {
             title: this.state.title,
-            note: this.state.note
+            note: this.state.note,
         };
         console.log('body',body)
 
@@ -36,14 +36,14 @@ class Index extends Component {
             method: 'post',
             body: JSON.stringify(body),
             headers: {
-                'content-type': 'application/json'
+                'content-type': 'application/json',
+                'authorization': localStorage.token,
             },
-            token: localStorage.token
         }).then(res => res.json())
+        console.log('localStorage.token', localStorage.token)
+
         event.preventDefault();
     }
-
-
 
     render() {
         return (

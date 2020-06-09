@@ -2,7 +2,7 @@ const express = require('express');
 const middleware = require('./auth/middleware');
 const volleyball = require('volleyball');
 const auth = require('./auth/index.js');
-const notes = require('./routers/index.js')
+const notes = require('./api/notes.js');
 const cors = require('cors');
 
 // Constants

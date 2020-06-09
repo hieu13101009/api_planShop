@@ -1,16 +1,15 @@
 const jwt = require('jsonwebtoken');
 
-function checkTokenSetUser (req,res,next) {
+function checkTokenSetUser (req, res, next) {
     const authHeader = req.get('content-type');
     if (authHeader) {
     const token = req.get('token')
         if(token) {
             jwt.verify(token, 'qweascxzcasdwqeasxghjrtyfb', (error, user) => {
                 if(error) {
-                    console.log('-------',error)
+                    console.log('-------a',error)
                 }
                 req.user = user;
-                console.log('-------',req.user)
                 next();
             })
         } else {
@@ -22,11 +21,11 @@ function checkTokenSetUser (req,res,next) {
 }
 
 
-function isLoggedIn (req,res,next) {
-    console.log('req.user--------',req.user)
-    if (req.user) {
+function isLoggedIn (req, res, next) {
+    console.log('req.user',req.user)
+    if (req.body) {
         next();
-    }else {
+    } else {
         const error = new Error('unauthorized pip pip pip------');
         res.status(401);
         next(error);

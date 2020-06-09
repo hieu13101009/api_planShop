@@ -67,7 +67,7 @@ router.post('/login', async (req, res) =>{
                         code: '001'
                     }
                     res.send(JSON.stringify(result))
-                }else {
+                } else {
                     const mess = 'can not loginnn';
                     res.send(JSON.stringify(mess))
                 }
