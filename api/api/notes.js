@@ -10,17 +10,34 @@ const Schema = mongoose.Schema;
 const noteSchema = new Schema({
     title: String,
     notes: String,
+    user_id: String,
 });
 
 const schema = Joi.object().keys({
     title: Joi.string().trim().max(100).required(),
-    note: Joi.string().trim().max(8).required(),
+    note: Joi.string().trim().max(100).required(),
 });
 const router = express.Router();
 
-router.get('/', (req, res) => {
+router.get('/',async (req, res) => {
     console.log('notesnotesnotes')
-    res.json([])
+        const token = req.get('authorization')
+        console.log('tokenzzzz',token)
+        jwt.verify(
+            token,
+            'qweascxzcasdwqeasxghjrtyfb', 
+            (error, user) => {
+                console.log('user',user)
+                takeUserInfo = user;
+        })
+        const userId = takeUserInfo._id
+        console.log('userId',userId)
+        const Notes = mongoose.model('Notes', noteSchema);
+        const list = await Notes.find({
+            user_id: userId,
+        })
+        console.log('list', list)
+        res.send(list)
 });
 
 router.post('/', (req, res) => {
@@ -28,14 +45,19 @@ router.post('/', (req, res) => {
     if (result.error == null) {
         const token = req.get('authorization')
         console.log('tokenzzzz',token)
-        jwt.verify(token, 'qweascxzcasdwqeasxghjrtyfb', (error, user) => {
-            req.user = user;
+        jwt.verify(
+            token,
+            'qweascxzcasdwqeasxghjrtyfb', 
+            (error, user) => {
+                takeUserInfo = user;
         })
-        userId = req.user._id
+        const userId = takeUserInfo._id
+        console.log('userId',userId)
         const Notes = mongoose.model('Notes', noteSchema);
         Notes.create({
+            user_id: userId,
             title: req.body.title,
-            note: req.body.note,
+            notes: req.body.note,
         })
     } else {
         const error = new Error(result.error);

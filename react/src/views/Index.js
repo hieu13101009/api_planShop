@@ -11,8 +11,14 @@ class Index extends Component {
         this.state = {
             title: '',
             note: '',
+            data: []
         }
     }
+
+    componentDidMount = async () => {
+        await this.getNotesList();
+    }
+
     Logout = () => {
         localStorage.removeItem('token');
     }
@@ -41,8 +47,18 @@ class Index extends Component {
             },
         }).then(res => res.json())
         console.log('localStorage.token', localStorage.token)
+    }
 
-        event.preventDefault();
+    getNotesList =() => {
+        fetch(NOTE_URL, {
+            method: 'get',
+            headers: {
+                'content-type': 'application/json',
+                'authorization': localStorage.token,
+            },
+        }).then(response => response.json()).then(data => {
+            this.setState({data})
+        });
     }
 
     render() {
@@ -61,8 +77,24 @@ class Index extends Component {
                     </p>
                     </div>
                 </div>
+                <div className="alert alert-dismissible alert-danger">
+                    <a className="alert-link"> List note</a>
+                </div>
+                {this.state.data.map((item,index) => (
+                    <div className="list-group" key={item._id}>
+                        <a className="list-group-item list-group-item-action flex-column align-items-start active">
+                            <div className="d-flex w-100 justify-content-between">
+                            <h5 className="mb-1" >{item.title}</h5>
+                            </div>
+                            <p className="mb-1">{item.notes}</p>
+                        </a>
+                    </div>
+                ))}
                 <form onSubmit={(event) => this.formSubmitted(event)}>
                     <div className="form-group">
+                        <div className="alert alert-dismissible alert-danger">
+                            <a className="alert-link"> Add more note here</a>
+                        </div>
                         <label htmlFor="title">Title</label>
                         <input type="text" 
                         className="form-control" 
