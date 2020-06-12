@@ -1,42 +1,37 @@
-import React, { Component } from 'react';
+import React, { useState,useCallback } from 'react';
 const SIGNUP_URL = 'http://192.168.33.21:8080/auth/sigup';
 
-class Signup extends Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-            username: '',
-            password: '',
-            confPassword: ''
-        }
-    }
+const Signup = () => {
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
+    const [confPassword, setConfPassword] = useState('');
 
 
-    onChangeText = (event) => {
-        this.setState({ username: event.target.value })
-    }
-    onChangePass = (event) => {
-        this.setState({ password: event.target.value })
-    }
-    onChangeConfPass = (event) => {
-        this.setState({ confPassword: event.target.value })
-    }
+    const onChangeText = useCallback((event) => {
+        setUsername(event.target.value)
+    }, [])
+    const onChangePass = useCallback((event) => {
+        setPassword(event.target.value)
+    }, [])
+    const onChangeConfPass = useCallback((event) => {
+        setConfPassword(event.target.value)
+    }, [])
 
-    formSubmitted = (event) => {
+    const formSubmitted = useCallback((event) => {
         event.preventDefault();
         const param =  {
-            username: this.state.username,
-            password: this.state.password,
-            confPassword: this.state.confPassword
+            username: username,
+            password: password,
+            confPassword: confPassword
         }
         console.log('param',param)
 
-        if(this.state.password !== this.state.confPassword) {
+        if(password !== confPassword) {
             console.log('no same')
         } else {
             const body = {
-                username: this.state.username,
-                password: this.state.password
+                username: username,
+                password: password
             };
     
             fetch(SIGNUP_URL, {
@@ -59,52 +54,50 @@ class Signup extends Component {
                 console.log(error);
             })
         }
-    }
+    }, [username, password, confPassword])
 
-    render() {
-        return (
-            <div style={{textAlign: 'center'}}>
-                <div >
-                    <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
-                        <a className="navbar-brand" href="/">Api view</a>
-                    </nav>
-                    <div className="jumbotron">
-                        <h1 className="display-3">Signup</h1>
-                        <hr className="my-4"/>
-                        <p>Welcome to Signup.</p>
-                    </div>
+    return (
+        <div style={{textAlign: 'center'}}>
+            <div >
+                <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
+                    <a className="navbar-brand" href="/">Api view</a>
+                </nav>
+                <div className="jumbotron">
+                    <h1 className="display-3">Signup</h1>
+                    <hr className="my-4"/>
+                    <p>Welcome to Signup.</p>
                 </div>
-                <form onSubmit={(event) => this.formSubmitted(event)}>
-                    <div className="form-group">
-                        <label htmlFor="exampleInputEmail1">Username</label>
-                        <input type="text" className="form-control" placeholder="Enter Username" 
-                            value={this.state.username}
-                            onChange={event => this.onChangeText(event)}
-                            >
-                        </input>
-                        <small id="emailHelp" className="form-text text-muted">Username form 3 to 30 char</small>
-                    </div>
-                    <div className="form-group">
-                        <label htmlFor="exampleInputPassword1">Password</label>
-                        <input 
-                            onChange={event => this.onChangePass(event)}
-                            type="password" className="form-control" id="password" placeholder="Enter Password" value={this.state.Password}></input>
-                        <small id="emailHelp" className="form-text text-muted">Username form 6 to 8 char</small>
-                    </div>
-                    <div className="form-group">
-                        <label htmlFor="exampleInputPassword1">Confirm Password</label>
-                        <input
-                            onChange={event => this.onChangeConfPass(event)}
-                            type="password" className="form-control" id="password" placeholder="Enter Confirm Password" value={this.state.confPassword}></input>
-                        <small id="emailHelp" className="form-text text-muted">Username form 6 to 8 char</small>
-                    </div>
-                    <button type="submit" className="btn btn-primary">Submit</button>
-                    <div className="form-group form-check">
-                    </div>
-                </form>
             </div>
-        );
-    }
+            <form onSubmit={formSubmitted}>
+                <div className="form-group">
+                    <label htmlFor="exampleInputEmail1">Username</label>
+                    <input type="text" className="form-control" placeholder="Enter Username" 
+                        value={username}
+                        onChange={onChangeText}
+                        >
+                    </input>
+                    <small id="emailHelp" className="form-text text-muted">Username form 3 to 30 char</small>
+                </div>
+                <div className="form-group">
+                    <label htmlFor="exampleInputPassword1">Password</label>
+                    <input 
+                        onChange={onChangePass}
+                        type="password" className="form-control" id="password" placeholder="Enter Password" value={password}></input>
+                    <small id="emailHelp" className="form-text text-muted">Username form 6 to 8 char</small>
+                </div>
+                <div className="form-group">
+                    <label htmlFor="exampleInputPassword1">Confirm Password</label>
+                    <input
+                        onChange={onChangeConfPass}
+                        type="password" className="form-control" id="password" placeholder="Enter Confirm Password" value={confPassword}></input>
+                    <small id="emailHelp" className="form-text text-muted">Username form 6 to 8 char</small>
+                </div>
+                <button type="submit" className="btn btn-primary">Submit</button>
+                <div className="form-group form-check">
+                </div>
+            </form>
+        </div>
+    );
 }
 
 export default Signup;
