@@ -62,7 +62,7 @@ const Index = () => {
             <div >
                 <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
                     <a className="navbar-brand" href="/">Api view</a>
-                    <button className="btn btn-light" onClick={() => this.Logout()}><Link to="/">Log Out</Link></button>
+                    <button className="btn btn-light" onClick={Logout}><Link to="/">Log Out</Link></button>
                 </nav>
                 <div className="jumbotron">
                     <h1 className="display-3">Index</h1>

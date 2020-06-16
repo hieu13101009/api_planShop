@@ -12,21 +12,20 @@ import Index from './views/Index'
 import Example from './views/Example'
 
 import { ProtectedRoute,  } from "./router/ProtectedRoute";
-
 import './App.css';
 
 function App() {
   return (
-    <Router>
-      <Switch>
-        <Route exact path="/" component={Home} />
-        <ProtectedRoute exact path="/Index" component={Index} />
-        <Route path="/Signup" component={Signup} />
-        <Route path="/Login" component={Login} />
-        <Route path="/Example" component={Example} />
-        <Redirect to="/" />
-      </Switch>
-    </Router>
+      <Router>
+        <Switch>
+          <Route exact path="/" component={Home} />
+          <ProtectedRoute exact path="/Index" component={Index} />
+          <Route path="/Signup" component={Signup} />
+          <Route path="/Login" component={Login} />
+          <Route path="/Example" component={Example} />
+          <Redirect to="/" />
+        </Switch>
+      </Router>
   );
 }
 

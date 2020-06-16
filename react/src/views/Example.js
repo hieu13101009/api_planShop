@@ -1,19 +1,28 @@
 import React, { useState, useCallback, useEffect } from 'react';
-
-const App = () => {
+import { useSelector, useDispatch } from 'react-redux';
+import { addNewTodo } from '../components/todo/action/index';
+const Example = () => {
 const [newTodo, setNewTodo] = useState('');
 const [todos, setTodos] = useState([]);
+
+const example = useSelector(state => state.todo.example);
+console.log('example', example);
+const dispatch = useDispatch();
 
 const onNewTodoChange = useCallback(
     (event) => {
     setNewTodo(event.target.value)
     console.log(event.target.value)
-    },
-    [],
-)
+    },[]
+);
 const formSubmitted = useCallback((event) => {
     event.preventDefault();
     if (!newTodo.trim()) return;
+    const param = {
+        example: newTodo
+    };
+    const action = addNewTodo(param);
+    dispatch(action);
     console.log('form was submitted')
     setTodos([
     {
@@ -22,7 +31,6 @@ const formSubmitted = useCallback((event) => {
         done: false
     },
     ...todos
-
     ])
     setNewTodo('');
 }, [newTodo, todos]);
@@ -31,6 +39,7 @@ const addTodo = useCallback((todo, index) => (event) => {
     const newTodos = [...todos];
     newTodos.splice(index, 1, {
     ...todo,
+
     done: !todo.done
     })
     setTodos(newTodos)
@@ -59,6 +68,7 @@ useEffect(() => {
 
 return (
     <div className="App">
+        <div>{example}</div>
     <form onSubmit={formSubmitted}>
         <label>Enter a Todo: </label>
         <input
@@ -88,4 +98,4 @@ return (
 );
 }
 
-export default App;
+export default Example;
