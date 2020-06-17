@@ -17,7 +17,7 @@ const Login = () => {
 
     useEffect(() => {
         if (localStorage.token) {
-            setDirectScreen('Index');
+            setDirectScreen('admin');
         }
     }, [directScreen])
 
@@ -50,7 +50,7 @@ const Login = () => {
                 setDirectScreen('Home');
             } else {
                 localStorage.token = user.data
-                setDirectScreen('Index');
+                setDirectScreen('admin');
             }
 
         }).catch((error) => {
@@ -60,7 +60,7 @@ const Login = () => {
     }
 
     return (
-        directScreen === 'Index' ? (
+        directScreen === 'admin' ? (
             <Redirect
             to={{
                 pathname: directScreen,

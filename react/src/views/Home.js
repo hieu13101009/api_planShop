@@ -18,13 +18,13 @@ const Home = () => {
                     <Link to="/Signup">Signup</Link>
                 </p>
                 <p className="lead">
-                    <Link to="/login">Login</Link>
+                    <Link to="/Login">Login</Link>
                 </p>
                 <p className="lead">
-                    <Link to="/index">Go to index</Link>
+                    <Link to="/admin">Go to index</Link>
                 </p>
                 <p className="lead">
-                    <Link to="/Example">Go to hook</Link>
+                    <Link to="/admin/Example">Go to hook</Link>
                 </p>
             </div>
         </div>

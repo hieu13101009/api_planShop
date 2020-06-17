@@ -8,7 +8,6 @@ import {
 import Signup from './views/Signup'
 import Login from './views/Login'
 import Home from './views/Home'
-import Index from './views/Index'
 import Example from './views/Example'
 
 import { ProtectedRoute,  } from "./router/ProtectedRoute";
@@ -19,10 +18,9 @@ function App() {
       <Router>
         <Switch>
           <Route exact path="/" component={Home} />
-          <ProtectedRoute exact path="/Index" component={Index} />
           <Route path="/Signup" component={Signup} />
           <Route path="/Login" component={Login} />
-          <Route path="/Example" component={Example} />
+          <ProtectedRoute />
           <Redirect to="/" />
         </Switch>
       </Router>
