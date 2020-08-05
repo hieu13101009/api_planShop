@@ -2,17 +2,21 @@ import React, { useState, useCallback, useEffect } from 'react';
 import {
     Link
 } from "react-router-dom";
+import { useSelector, useDispatch, } from "react-redux"
+import useCallListApi from '../ourHooks/hooks.js';
 
 const NOTE_URL = 'http://192.168.33.21:8080/api/v1/notes';
+
 
 const Index = () => {
     const [title, setTitle] = useState('');
     const [note, setNote] = useState('');
     const [data, setData] = useState([]);
 
-    useEffect(() => {
-        getNotesList();
-    },[])
+
+    const count = useSelector(state => state.counter.count);
+    const user = useSelector(state => state.user);
+    useCallListApi(setData);
 
     const Logout = useCallback((event) => {
         localStorage.removeItem('token');
@@ -42,19 +46,6 @@ const Index = () => {
             },
         }).then(res => res.json())
         console.log('localStorage.token', localStorage.token)
-    }
-
-    const getNotesList =() => {
-        console.log('1111')
-        fetch(NOTE_URL, {
-            method: 'get',
-            headers: {
-                'content-type': 'application/json',
-                'authorization': localStorage.token,
-            },
-        }).then(response => response.json()).then(data => {
-            setData(data)
-        });
     }
 
     return (
