@@ -1,4 +1,6 @@
 const express = require('express');
+const rateLimit = require('express-rate-limit');
+const slowDown = require('express-slow-down');
 const middleware = require('./auth/middleware');
 const volleyball = require('volleyball');
 const auth = require('./auth/index.js');
@@ -18,7 +20,22 @@ app.use(cors({
     origin: '*'
 }))
 
-app.use(middleware.checkTokenSetUser);
+const limiter = rateLimit({
+    windowMs: 15 * 60 * 1000, // 15 minutes
+    max: 10 // limit each IP to 100 requests per windowMs
+});
+
+const speedLimiter = slowDown({
+    windowMs: 15 * 60 * 1000, // 15 minutes
+    delayAfter: 10, // allow 100 requests per 15 minutes, then...
+    delayMs: 500 // begin adding 500ms of delay per request above 100:
+    // request # 101 is delayed by  500ms
+    // request # 102 is delayed by 1000ms
+    // request # 103 is delayed by 1500ms
+    // etc.
+});
+
+app.use(limiter, speedLimiter, middleware.checkTokenSetUser);
 
 app.get('/', (req, res) => {
     res.send('Hello World');
