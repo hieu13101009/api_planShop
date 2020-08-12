@@ -1,7 +1,7 @@
 module.exports = {
     apps : [{
       name: 'app',
-      script: './app.js',
+      script: './app.ts',
       watch: true,
       watch_delay: 1000,
       "watch_options": {

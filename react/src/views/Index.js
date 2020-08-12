@@ -4,25 +4,38 @@ import {
 } from "react-router-dom";
 import { useSelector, useDispatch, } from "react-redux"
 import useCallListApi from '../ourHooks/hooks.js';
+import List from './List.js';
 
 const NOTE_URL = 'http://192.168.33.21:8080/api/v1/notes';
 
 
 const Index = () => {
+    const [number, setNumber] = useState(1);
+    const [dark, setDark] = useState(false);
     const [title, setTitle] = useState('');
     const [note, setNote] = useState('');
     const [data, setData] = useState([]);
 
 
-    const count = useSelector(state => state.counter.count);
-    const user = useSelector(state => state.user);
+    // const count = useSelector(state => state.counter.count);
+    // const user = useSelector(state => state.user);
     useCallListApi(setData);
+
+    const getItems = useCallback(() => {
+        return [number, number + 1, number + 2]
+    },[number])
+
+    const theme = {
+        backgroundColor: dark ? '#333': '#FFF',
+        color: dark ? '#FFF' : '#333'
+    }
 
     const Logout = useCallback((event) => {
         localStorage.removeItem('token');
     }, [])
 
     const onChangeTitle = useCallback((event) => {
+        console.log('onChangeTitle',onChangeTitle)
         setTitle(event.target.value)
     }, [])
 
@@ -49,6 +62,18 @@ const Index = () => {
     }
 
     return (
+    <div>
+        <div style={theme}>
+            <input 
+            type="number"
+            value={number}
+            onChange={e => setNumber(parseInt(e.target.value))}
+            />
+            <button onClick={()=>setDark(prevDark => !prevDark)}>
+                Toggle theme
+            </button>
+            <List getItems={getItems} />
+        </div>
         <div style={{textAlign: 'center'}}>
             <div >
                 <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
@@ -76,7 +101,8 @@ const Index = () => {
                     </a>
                 </div>
             ))}
-            <form onSubmit={formSubmitted}>
+
+            <form onSubmit={formSubmitted} >
                 <div className="form-group">
                     <div className="alert alert-dismissible alert-danger">
                         <a className="alert-link"> Add more note here</a>
@@ -103,6 +129,7 @@ const Index = () => {
                 <div className="form-group form-check">
                 </div>
             </form>
+        </div>
         </div>
     );
 }

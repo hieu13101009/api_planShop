@@ -1,48 +1,41 @@
-const express = require('express');
-const rateLimit = require('express-rate-limit');
-const slowDown = require('express-slow-down');
-const middleware = require('./auth/middleware');
-const volleyball = require('volleyball');
-const auth = require('./auth/index.js');
-const notes = require('./api/notes.js');
-const cors = require('cors');
-
+"use strict";
+exports.__esModule = true;
+var express_1 = require("express");
+var rateLimit = require('express-rate-limit');
+var slowDown = require('express-slow-down');
+var middleware = require('./auth/middleware');
+var volleyball = require('volleyball');
+var auth = require('./auth/index.js');
+var notes = require('./api/notes.js');
+var cors = require('cors');
 // Constants
-const PORT = 8080;
-const HOST = '0.0.0.0';
-
+var PORT = 8080;
+var HOST = '0.0.0.0';
 // App
-
-const app = express();
+var app = express_1["default"]();
 app.use(volleyball);
-app.use(express.json());
+app.use(express_1["default"].json());
 app.use(cors({
     origin: '*'
-}))
-
-const limiter = rateLimit({
-    windowMs: 15 * 60 * 1000, // 15 minutes
-    max: 10 // limit each IP to 100 requests per windowMs
+}));
+var limiter = rateLimit({
+    windowMs: 15 * 60 * 1000,
+    max: 1000 // limit each IP to 100 requests per windowMs
 });
-
-const speedLimiter = slowDown({
-    windowMs: 15 * 60 * 1000, // 15 minutes
-    delayAfter: 10, // allow 100 requests per 15 minutes, then...
-    delayMs: 500 // begin adding 500ms of delay per request above 100:
+var speedLimiter = slowDown({
+    windowMs: 15 * 60 * 1000,
+    delayAfter: 1000,
+    delayMs: 50000 // begin adding 500ms of delay per request above 100:
     // request # 101 is delayed by  500ms
     // request # 102 is delayed by 1000ms
     // request # 103 is delayed by 1500ms
     // etc.
 });
-
 app.use(limiter, speedLimiter, middleware.checkTokenSetUser);
-
-app.get('/', (req, res) => {
+app.get('/', function (req, res) {
     res.send('Hello World');
 });
-
-app.use('/auth',auth);
+app.use('/auth', auth);
 app.use('/api/v1/notes', middleware.isLoggedIn, notes);
-
 app.listen(PORT, HOST);
-console.log(`Running on http://${HOST}:${PORT}`);
+console.log("Running on http://" + HOST + ":" + PORT);
