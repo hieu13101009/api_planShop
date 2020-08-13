@@ -1,11 +1,11 @@
-import express, { Express } from "express";
-const rateLimit = require('express-rate-limit');
-const slowDown = require('express-slow-down');
-const middleware = require('./auth/middleware');
-const volleyball = require('volleyball');
-const auth = require('./auth/index.js');
-const notes = require('./api/notes.js');
-const cors = require('cors');
+import express, { Express, Response, Request } from "express";
+import rateLimit from 'express-rate-limit';
+import slowDown from 'express-slow-down';
+// import middleware from './auth/middleware';
+// import volleyball from 'volleyball';
+// import auth from './auth/index.js';
+// import notes from './api/notes.js';
+import cors from 'cors';
 
 // Constants
 const PORT = 8080;
@@ -14,7 +14,7 @@ const HOST = '0.0.0.0';
 // App
 
 const app: Express = express();
-app.use(volleyball);
+// app.use(volleyball);
 app.use(express.json());
 app.use(cors({
     origin: '*'
@@ -35,14 +35,14 @@ const speedLimiter = slowDown({
     // etc.
 });
 
-app.use(limiter, speedLimiter, middleware.checkTokenSetUser);
+// app.use(limiter, speedLimiter, middleware.checkTokenSetUser);
 
-app.get('/', (req, res) => {
+app.get('/', (req: Request, res: Response) => {
     res.send('Hello World');
 });
 
-app.use('/auth',auth);
-app.use('/api/v1/notes', middleware.isLoggedIn, notes);
+// app.use('/auth',auth);
+// app.use('/api/v1/notes', middleware.isLoggedIn, notes);
 
 app.listen(PORT, HOST);
 console.log(`Running on http://${HOST}:${PORT}`);

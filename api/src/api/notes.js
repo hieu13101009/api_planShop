@@ -1,5 +1,3 @@
-import {Response, Request} from "express";
-
 const express = require('express');
 const Joi = require('joi');
 const mongoose = require('mongoose');
@@ -21,7 +19,7 @@ const schema = Joi.object().keys({
 });
 const router = express.Router();
 
-router.get('/',async (req: Request, res: Response) => {
+router.get('/',async (req, res) => {
     console.log('notesnotesnotes')
         const token = req.get('authorization')
         console.log('tokenzzzz',token)
