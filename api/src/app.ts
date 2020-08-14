@@ -38,7 +38,6 @@ const speedLimiter = slowDown({
 // app.use(limiter, speedLimiter, middleware.checkTokenSetUser);
 
 app.get('/', (req: Request, res: Response) => {
-    console.log('Hello is123')
     res.send('Hello World');
 });
 

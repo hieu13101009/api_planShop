@@ -36,7 +36,6 @@ var speedLimiter = express_slow_down_1.default({
 });
 // app.use(limiter, speedLimiter, middleware.checkTokenSetUser);
 app.get('/', function (req, res) {
-    console.log('Hello is');
     res.send('Hello World');
 });
 // app.use('/auth',auth);
