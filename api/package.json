@@ -5,8 +5,8 @@
   "author": "First Last <first.last@example.com>",
   "main": "app.ts",
   "scripts": {
-    "start": "node dist/app.js",
-    "dev": "node src/app.ts",
+    "start": "dist/app.js",
+    "dev": "src/app.ts",
     "build": "tsc -p ."
   },
   "dependencies": {
