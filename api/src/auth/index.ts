@@ -1,8 +1,8 @@
-const express = require('express')
+import express, { Response, Request } from "express";
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-const router = express.Router()
+export const routerAuth = express.Router()
 
 const Joi = require('joi');
 const db = require('../db/connection')
@@ -19,11 +19,11 @@ const schema = Joi.object().keys({
     password: Joi.string().trim().min(6).max(8).required(),
 });
 
-router.get('/', function (req, res) {
+routerAuth.get('/', function (req: Request, res: Response) {
     res.send('Birds home page')
 })
 
-router.post('/sigup', async (req, res) =>{
+routerAuth.post('/sigup', async (req: Request, res: Response) =>{
     const result = Joi.validate(req.body, schema);
     const User = mongoose.model('User', userSchema);
     if (result.error) {
@@ -46,7 +46,7 @@ router.post('/sigup', async (req, res) =>{
     }
 })
 
-router.post('/login', async (req, res) =>{
+routerAuth.post('/login', async (req: Request, res: Response) =>{
     console.log('--------------login-------------')
     const result = Joi.validate(req.body, schema);
     const User = mongoose.model('User', userSchema);
@@ -55,7 +55,7 @@ router.post('/login', async (req, res) =>{
     } else {
         const user = await User.findOne({ username: req.body.username });
         if (user) {
-            bcrypt.compare(req.body.password, user.password).then((result) => {
+            bcrypt.compare(req.body.password, user.password).then((result: any) => {
                 if (result) {
                     const dataToken = {
                         _id: user._id,
@@ -79,5 +79,3 @@ router.post('/login', async (req, res) =>{
     }
 
 })
-
-module.exports = router

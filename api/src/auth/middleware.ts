@@ -1,15 +1,16 @@
+import express, { Response, Request, NextFunction } from "express";
 const jwt = require('jsonwebtoken');
 
-function checkTokenSetUser (req, res, next) {
+export function checkTokenSetUser (req: Request, res: Response, next: NextFunction) {
     const authHeader = req.get('content-type');
     if (authHeader) {
     const token = req.get('token')
         if(token) {
-            jwt.verify(token, 'qweascxzcasdwqeasxghjrtyfb', (error, user) => {
+            jwt.verify(token, 'qweascxzcasdwqeasxghjrtyfb', (error: any, user: any) => {
                 if(error) {
                     console.log('-------a',error)
                 }
-                req.user = user;
+                console.log(user);
                 next();
             })
         } else {
@@ -21,8 +22,7 @@ function checkTokenSetUser (req, res, next) {
 }
 
 
-function isLoggedIn (req, res, next) {
-    console.log('req.user',req.user)
+export function isLoggedIn (req: Request, res: Response, next: NextFunction) {
     if (req.body) {
         next();
     } else {
@@ -30,9 +30,4 @@ function isLoggedIn (req, res, next) {
         res.status(401);
         next(error);
     }
-}
-
-module.exports = {
-    checkTokenSetUser,
-    isLoggedIn
 }

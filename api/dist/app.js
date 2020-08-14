@@ -6,11 +6,11 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var express_1 = __importDefault(require("express"));
 var express_rate_limit_1 = __importDefault(require("express-rate-limit"));
 var express_slow_down_1 = __importDefault(require("express-slow-down"));
-// import middleware from './auth/middleware';
 // import volleyball from 'volleyball';
-// import auth from './auth/index.js';
-// import notes from './api/notes.js';
 var cors_1 = __importDefault(require("cors"));
+var middleware_1 = require("./auth/middleware");
+var index_1 = require("./auth/index");
+var notes_1 = require("./api/notes");
 // Constants
 var PORT = 8080;
 var HOST = '0.0.0.0';
@@ -34,12 +34,12 @@ var speedLimiter = express_slow_down_1.default({
     // request # 103 is delayed by 1500ms
     // etc.
 });
-// app.use(limiter, speedLimiter, middleware.checkTokenSetUser);
+app.use(limiter, speedLimiter, middleware_1.checkTokenSetUser);
 app.get('/', function (req, res) {
     res.send('Hello World');
 });
-// app.use('/auth',auth);
-// app.use('/api/v1/notes', middleware.isLoggedIn, notes);
+app.use('/auth', index_1.routerAuth);
+app.use('/api/v1/notes', middleware_1.isLoggedIn, notes_1.router);
 app.listen(PORT, HOST);
 console.log("Running on http://" + HOST + ":" + PORT);
 //# sourceMappingURL=app.js.map

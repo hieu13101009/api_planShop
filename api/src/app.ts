@@ -1,11 +1,12 @@
 import express, { Express, Response, Request } from "express";
 import rateLimit from 'express-rate-limit';
 import slowDown from 'express-slow-down';
-// import middleware from './auth/middleware';
 // import volleyball from 'volleyball';
-// import auth from './auth/index.js';
-// import notes from './api/notes.js';
 import cors from 'cors';
+
+import {checkTokenSetUser, isLoggedIn} from './auth/middleware';
+import {routerAuth} from './auth/index';
+import {router} from './api/notes';
 
 // Constants
 const PORT = 8080;
@@ -35,14 +36,14 @@ const speedLimiter = slowDown({
     // etc.
 });
 
-// app.use(limiter, speedLimiter, middleware.checkTokenSetUser);
+app.use(limiter, speedLimiter, checkTokenSetUser);
 
 app.get('/', (req: Request, res: Response) => {
     res.send('Hello World');
 });
 
-// app.use('/auth',auth);
-// app.use('/api/v1/notes', middleware.isLoggedIn, notes);
+app.use('/auth', routerAuth);
+app.use('/api/v1/notes', isLoggedIn, router);
 
 app.listen(PORT, HOST);
 console.log(`Running on http://${HOST}:${PORT}`);
