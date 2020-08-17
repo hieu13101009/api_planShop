@@ -39,7 +39,7 @@ const speedLimiter = slowDown({
 app.use(limiter, speedLimiter, checkTokenSetUser);
 
 app.get('/', (req: Request, res: Response) => {
-    res.send('Hello World');
+    res.send('Hello World 123');
 });
 
 app.use('/auth', routerAuth);

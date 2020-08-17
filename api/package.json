@@ -5,7 +5,7 @@
   "author": "First Last <first.last@example.com>",
   "main": "app.ts",
   "scripts": {
-    "start": "dist/app.js",
+    "start": "nodemon -e ts --exec tsc",
     "dev": "src/app.ts",
     "build": "tsc -p ."
   },
