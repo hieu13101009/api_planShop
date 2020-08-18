@@ -5,11 +5,11 @@ module.exports = {
         jest: true,
     },
     extends: [
-        'eslint:recommended',
-        'plugin:react/recommended',
+        'airbnb-typescript',
+        'airbnb/hooks',
+        'plugin:@typescript-eslint/eslint-recommended',
         'plugin:@typescript-eslint/recommended',
-        'prettier/@typescript-eslint',
-        'airbnb',
+        'plugin:@typescript-eslint/recommended-requiring-type-checking',
     ],
     settings: {
         react: {
@@ -25,8 +25,15 @@ module.exports = {
         ecmaVersion: 11,
         sourceType: 'module',
     },
-    plugins: ['react', '@typescript-eslint', 'prettier'],
+    plugins: ['@typescript-eslint', 'prettier', 'no-unused-vars'],
     rules: {
-        'react/jsx-filename-extension': [1, { extensions: ['.ts', '.tsx'] }],
+        'react/jsx-filename-extension': 0,
+        'react/jsx-props-no-spreading': 0,
+        'import/no-named-default': 0,
+        'import/no-named-as-default': 0,
+        'import/prefer-default-export': 0,
+        '@typescript-eslint/ban-ts-ignore': 0,
+        'jsx-a11y/accessible-emoji': 0,
+        'no-param-reassign': 0,
     },
 };

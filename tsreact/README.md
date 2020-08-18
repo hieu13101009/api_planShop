@@ -14,7 +14,10 @@ https://prettier.io/docs/en/configuration.html
 ### Install Material-UI
 ### cssinjs https://cssinjs.org/?v=v10.4.0
 
-### setup redux
+### setup redux https://redux.js.org/recipes/usage-with-typescript
+
+
+### define STORE
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
