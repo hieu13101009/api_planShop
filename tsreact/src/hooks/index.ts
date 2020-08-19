@@ -1,8 +1,15 @@
-import React, { useState, useCallback, useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import React, { useEffect } from 'react';
 
-const Example = () => {
-
-
+const useCallListApi = (setData: any) => {
+    // useEffect(() => {
+    //     console.log('useCallListApi')
+    //     const data = [{
+    //         user: 'string',
+    //         message: 'string',
+    //         timestamp: 'string',
+    //     }]
+    //     setData(data)
+    // },[])
 }
-export default Example;
+
+export default useCallListApi;

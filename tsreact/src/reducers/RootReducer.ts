@@ -1,11 +1,8 @@
 import { combineReducers } from 'redux';
+import {homeReducer} from '../container/HomeContainer/reducers/homeReducers';
 
-const reducer = (state = {}, action: {type: string}) => {
-    if(action.type === 'test') return state;
-    return state;
-}
 const RootReducer = combineReducers({
-    test: reducer,
+    home: homeReducer,
 });
 
 export default RootReducer;

@@ -1,6 +1,5 @@
 import React from 'react';
 import { Switch, Route, Redirect, Link } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Button from '@material-ui/core/Button';
@@ -8,6 +7,7 @@ import IconButton from '@material-ui/core/IconButton';
 import Container from '@material-ui/core/Container';
 
 import useStyles from './styles';
+import Home from '../../views/Home';
 
 const App: React.FC = () => {
     const classes = useStyles();
@@ -29,9 +29,7 @@ const App: React.FC = () => {
             </AppBar>
             <Container maxWidth="md">
                 <Switch>
-                    <Route exact path="/">
-                        <h1>Home Page</h1>
-                    </Route>
+                    <Route exact path="/" component={Home} />
                     <Route exact path="/about">
                         <h1>About Page</h1>
                     </Route>
