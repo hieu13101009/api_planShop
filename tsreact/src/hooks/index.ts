@@ -1,20 +1,8 @@
 import React, { useState, useCallback, useEffect } from 'react';
-const NOTE_URL = 'http://192.168.33.21:8080/api/v1/notes';
+import { useSelector, useDispatch } from 'react-redux';
+
+const Example = () => {
 
 
-const useCallListApi = (setData: (arg0: any) => void) => {
-    useEffect(() => {
-        console.log('1111')
-        fetch(NOTE_URL, {
-            method: 'get',
-            headers: {
-                'content-type': 'application/json',
-                'authorization': localStorage.token,
-            },
-        }).then(response => response.json()).then(data => {
-            setData(data)
-        });
-    },[])
 }
-
-export default useCallListApi;
+export default Example;

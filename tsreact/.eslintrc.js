@@ -10,6 +10,8 @@ module.exports = {
         'plugin:@typescript-eslint/eslint-recommended',
         'plugin:@typescript-eslint/recommended',
         'plugin:@typescript-eslint/recommended-requiring-type-checking',
+        'prettier',
+        'prettier/@typescript-eslint',
     ],
     settings: {
         react: {
@@ -24,8 +26,9 @@ module.exports = {
         },
         ecmaVersion: 11,
         sourceType: 'module',
+        project: 'tsconfig.json',
     },
-    plugins: ['@typescript-eslint', 'prettier', 'no-unused-vars'],
+    plugins: ['@typescript-eslint', 'prettier', '@typescript-eslint/eslint-plugin'],
     rules: {
         'react/jsx-filename-extension': 0,
         'react/jsx-props-no-spreading': 0,
@@ -35,5 +38,17 @@ module.exports = {
         '@typescript-eslint/ban-ts-ignore': 0,
         'jsx-a11y/accessible-emoji': 0,
         'no-param-reassign': 0,
+
+        '@typescript-eslint/interface-name-prefix': 'off',
+        '@typescript-eslint/explicit-function-return-type': 'off',
+        '@typescript-eslint/no-explicit-any': 'off',
+        // Indent with 4 spaces
+        "indent": ["error", 4],
+
+        // Indent JSX with 4 spaces
+        "react/jsx-indent": ["error", 4],
+
+        // Indent props with 4 spaces
+        "react/jsx-indent-props": ["error", 4],
     },
 };

@@ -1,30 +1,45 @@
 import React from 'react';
-import {
-    BrowserRouter as Router,
-    Switch,
-    Route,
-    Redirect,
-} from 'react-router-dom';
-import Signup from '../../views/Signup';
-import Login from '../../views/Login';
-import Home from '../../views/Home';
+import { Switch, Route, Redirect, Link } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import Button from '@material-ui/core/Button';
+import IconButton from '@material-ui/core/IconButton';
+import Container from '@material-ui/core/Container';
 
-import { ProtectedRoute } from '../../router/ProtectedRoute';
 import useStyles from './styles';
 
-function App() {
+const App: React.FC = () => {
     const classes = useStyles();
+    
     return (
-        <Router>
-            <Switch>
-                <Route exact path="/" component={Home} />
-                <Route path="/Signup" component={Signup} />
-                <Route path="/Login" component={Login} />
-                <ProtectedRoute />
-                <Redirect to="/" />
-            </Switch>
-        </Router>
+        <div className={classes.root}>
+            <AppBar position="static">
+                <Toolbar>
+                    <IconButton edge="start" color="inherit" aria-label="menu">
+                        🍔
+                    </IconButton>
+                    <Button component={Link} to="/" color="inherit">
+                        Home
+                    </Button>
+                    <Button component={Link} to="/about" color="inherit">
+                        About
+                    </Button>
+                </Toolbar>
+            </AppBar>
+            <Container maxWidth="md">
+                <Switch>
+                    <Route exact path="/">
+                        <h1>Home Page</h1>
+                    </Route>
+                    <Route exact path="/about">
+                        <h1>About Page</h1>
+                    </Route>
+                    <Redirect to="/" />
+                </Switch>
+            </Container>
+        </div>
     );
-}
+};
 
 export default App;

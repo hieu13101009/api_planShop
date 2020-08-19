@@ -1,11 +1,11 @@
 import { combineReducers } from 'redux';
-import homeReducer from '../components/home/reducer/homeReducer';
-import todoReducer from '../components/todo/reducer/todoReducer';
 
-
+const reducer = (state = {}, action: {type: string}) => {
+    if(action.type === 'test') return state;
+    return state;
+}
 const RootReducer = combineReducers({
-    home: homeReducer,
-    todo: todoReducer
+    test: reducer,
 });
 
 export default RootReducer;
