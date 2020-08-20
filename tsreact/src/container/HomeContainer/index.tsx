@@ -4,7 +4,9 @@ import Home from '../../views/Home/index';
 const homeReducers = () => {
 
     return (
-        <Home />
+        <div>
+            <Home />
+        </div>
     );
 };
 

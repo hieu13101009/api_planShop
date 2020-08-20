@@ -17,7 +17,9 @@ const App: React.FC = () => {
             <AppBar position="static">
                 <Toolbar>
                     <IconButton edge="start" color="inherit" aria-label="menu">
+                        <span role="img" aria-label="humbugger">
                         🍔
+                        </span>
                     </IconButton>
                     <Button component={Link} to="/" color="inherit">
                         Home
