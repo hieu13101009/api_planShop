@@ -17,7 +17,9 @@ https://prettier.io/docs/en/configuration.html
 ### setup redux https://redux.js.org/recipes/usage-with-typescript
 
 
-### define STORE
+### validate form input https://react-hook-form.com/api#reset
+
+### schema on frontend https://www.npmjs.com/package/yup
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 

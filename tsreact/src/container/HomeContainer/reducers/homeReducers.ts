@@ -16,7 +16,8 @@ export function homeReducer( state = initialState, action: HomeActionTypes): Hom
     switch (action.type) {
     case GET_MESSAGE:
         return {
-            messages: [...state.messages]
+            ...state,
+            messages: [...state.messages, action.payload],
         }
     default:
         return state

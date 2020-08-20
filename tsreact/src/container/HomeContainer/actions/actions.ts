@@ -1,9 +1,9 @@
-import {GET_MESSAGE, HomeActionTypes} from './types';
+import {Message, GET_MESSAGE, HomeActionTypes} from './types';
 
 
-export function getMessage(): HomeActionTypes {
-    console.log('getMessage');
+export function getMessage(newSession: Message): HomeActionTypes {
     return {
         type: GET_MESSAGE,
+        payload: newSession
     }
 }

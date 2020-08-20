@@ -11,7 +11,8 @@ export interface HomeState {
 }
 
 interface GetMessageAction {
-    type: typeof GET_MESSAGE
+    type: typeof GET_MESSAGE,
+    payload: Message
 }
 
 
