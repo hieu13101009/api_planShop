@@ -1,6 +1,6 @@
 import express, { Express, Response, Request } from "express";
-import rateLimit from 'express-rate-limit';
-import slowDown from 'express-slow-down';
+// import rateLimit from 'express-rate-limit';
+// import slowDown from 'express-slow-down';
 // import volleyball from 'volleyball';
 import cors from 'cors';
 
@@ -21,25 +21,43 @@ app.use(cors({
     origin: '*'
 }))
 
-const limiter = rateLimit({
-    windowMs: 15 * 60 * 1000, // 15 minutes
-    max: 1000 // limit each IP to 100 requests per windowMs
-});
+// const limiter = rateLimit({
+//     windowMs: 15 * 60 * 1000, // 15 minutes
+//     max: 1000 // limit each IP to 100 requests per windowMs
+// });
 
-const speedLimiter = slowDown({
-    windowMs: 15 * 60 * 1000, // 15 minutes
-    delayAfter: 1000, // allow 100 requests per 15 minutes, then...
-    delayMs: 50000 // begin adding 500ms of delay per request above 100:
-    // request # 101 is delayed by  500ms
-    // request # 102 is delayed by 1000ms
-    // request # 103 is delayed by 1500ms
-    // etc.
-});
+// const speedLimiter = slowDown({
+//     windowMs: 15 * 60 * 1000, // 15 minutes
+//     delayAfter: 1000, // allow 100 requests per 15 minutes, then...
+//     delayMs: 50000 // begin adding 500ms of delay per request above 100:
+//     // request # 101 is delayed by  500ms
+//     // request # 102 is delayed by 1000ms
+//     // request # 103 is delayed by 1500ms
+//     // etc.
+// });
 
-app.use(limiter, speedLimiter, checkTokenSetUser);
+app.use(
+    // limiter, 
+    // speedLimiter, 
+    checkTokenSetUser);
 
 app.get('/', (req: Request, res: Response) => {
-    res.send('Hello World 123');
+    console.log('call')
+    const data = [
+    {
+        id: 0,
+        user: 'Hello World',
+        message: 'From backend',
+        timestamp: Date()
+    },
+    {
+        id: 1,
+        user: 'Hello World 2',
+        message: 'From backend 2',
+        timestamp: Date()
+    },
+]
+    res.send(JSON.stringify(data));
 });
 
 app.use('/auth', routerAuth);

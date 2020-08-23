@@ -22,7 +22,7 @@ const EntryForm: React.FC = () => {
         resolver: yupResolver(EntrySchema),
     });
     const onSubmit= (data: Message): void => {
-        dispatch(getMessage(data));
+        // dispatch(getMessage(data));
         reset();
     };
 

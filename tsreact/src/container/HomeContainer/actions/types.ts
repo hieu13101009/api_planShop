@@ -1,19 +1,30 @@
 export const GET_MESSAGE = 'GET_MESSAGE'
+export const GET_MESSAGE_SUCCESS = 'GET_MESSAGE_SUCCESS'
+export const GET_MESSAGE_FAIL = 'GET_MESSAGE_FAIL'
 
-export interface Message {
+
+export type HomeType = {
+    mess: Message[]
+}
+
+export type Message = {
+    id: number
     user: string
     message: string
     timestamp: string
 }
 
-export interface HomeState {
-    messages: Message[]
-}
-
-interface GetMessageAction {
+export interface GetMessageAction {
     type: typeof GET_MESSAGE,
-    payload: Message
 }
 
+export interface GetMessageSuccessAction {
+    type: typeof GET_MESSAGE_SUCCESS,
+    payload: HomeType
+}
 
-export type HomeActionTypes = GetMessageAction
+export interface GetMessageFailAction {
+    type: typeof GET_MESSAGE_FAIL,
+}
+
+export type HomeDispatchTypes = GetMessageAction | GetMessageFailAction | GetMessageSuccessAction

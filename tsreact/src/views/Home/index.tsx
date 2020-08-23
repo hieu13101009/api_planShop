@@ -1,8 +1,9 @@
-import React from 'react';
-import {useSelector } from "react-redux";
+import React, {useEffect} from 'react';
+import {useSelector, useDispatch} from "react-redux";
 import { Card, CardContent, Typography } from '@material-ui/core';
 import useStyles from './styles';
 import EntryForm from "../EntryForm/index";
+import {getMessage} from "../../container/HomeContainer/actions/actions";
 
 import {RootStore} from "../../store/index";
 
@@ -10,13 +11,19 @@ import {RootStore} from "../../store/index";
 
 const Home: React.FC = () => {
     const classes = useStyles();
+    useEffect(() => {
+        dispatch(getMessage());
+      }, []);
     const homeState = useSelector((state: RootStore) => state.home);
+    console.log('homeState', homeState.messages);
+    const dispatch = useDispatch();
     return (
         <div>
             <EntryForm />
             {
-                homeState.messages.map((entry) => (
-                    <Card className={classes.entryCard} key={0}>
+                homeState.messages.map((entry) => 
+                    (
+                    <Card className={classes.entryCard} key={entry.id}>
                         <CardContent>
                             <Typography variant="h2">
                                 {entry.user}
