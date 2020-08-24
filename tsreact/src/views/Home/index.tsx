@@ -6,6 +6,7 @@ import EntryForm from "../EntryForm/index";
 import {getMessage} from "../../container/HomeContainer/actions/actions";
 
 import {RootStore} from "../../store/index";
+import { Message } from 'react-hook-form/dist/types/form';
 
 
 
@@ -13,16 +14,18 @@ const Home: React.FC = () => {
     const classes = useStyles();
     useEffect(() => {
         dispatch(getMessage());
-      }, []);
-    const homeState = useSelector((state: RootStore) => state.home);
-    console.log('homeState', homeState.messages);
+    }, []);
+    const homeState: {messages: Message[]} = useSelector((state: RootStore) => state.home);
+    console.log('homeState---', homeState);
     const dispatch = useDispatch();
+
     return (
         <div>
             <EntryForm />
-            {
-                homeState.messages.map((entry) => 
-                    (
+            
+            { homeState.messages !== undefined ? 
+                homeState.messages.map((entry: any) => {
+                    return(
                     <Card className={classes.entryCard} key={entry.id}>
                         <CardContent>
                             <Typography variant="h2">
@@ -36,7 +39,8 @@ const Home: React.FC = () => {
                             </Typography>
                         </CardContent>
                     </Card>
-                ))
+                )})
+                : null
             }
         </div>
     );

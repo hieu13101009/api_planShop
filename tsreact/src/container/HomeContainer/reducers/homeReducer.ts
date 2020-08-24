@@ -2,32 +2,30 @@ import {
     HomeType,
     HomeDispatchTypes,
     GET_MESSAGE,
-    GET_MESSAGE_SUCCESS, GET_MESSAGE_FAIL
+    GET_MESSAGE_SUCCESS, GET_MESSAGE_FAIL,
+    Message,
 } from '../actions/types'
 
 
 interface HomeState {
-    messages?: HomeType[]
+    messages?: Message
 }
-  
-const defaultState: HomeState = {
-    messages:[]
-};
 
-export function homeReducer(state: HomeState = defaultState, action: HomeDispatchTypes): HomeState  {
+// const defaultState: HomeState = {
+//     messages: []
+//     // messages:[]
+// };
+
+export function homeReducer(state = {messages: []}, action: HomeDispatchTypes)  {
     switch (action.type) {
         case GET_MESSAGE:
-            return {
-                messages:[]
-            }
+            return state.messages;
         case GET_MESSAGE_SUCCESS:
             return {
-                messages: [action.payload]
+                messages: action.payload
             }
         case GET_MESSAGE_FAIL:
-            return {
-                messages:[]
-            }
+            return state
         default:
             return state
     }

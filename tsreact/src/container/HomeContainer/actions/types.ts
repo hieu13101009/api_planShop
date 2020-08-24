@@ -3,15 +3,15 @@ export const GET_MESSAGE_SUCCESS = 'GET_MESSAGE_SUCCESS'
 export const GET_MESSAGE_FAIL = 'GET_MESSAGE_FAIL'
 
 
-export type HomeType = {
+export interface HomeType {
     mess: Message[]
 }
 
-export type Message = {
-    id: number
-    user: string
-    message: string
-    timestamp: string
+export interface Message {
+    id?: number
+    user?: string
+    message?: string
+    timestamp?: string
 }
 
 export interface GetMessageAction {
