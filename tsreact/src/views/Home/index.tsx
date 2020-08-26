@@ -23,7 +23,7 @@ const Home: React.FC = () => {
         <div>
             <EntryForm />
             
-            { homeState.messages !== undefined ? 
+            { homeState.messages !== undefined ?
                 homeState.messages.map((entry: any) => {
                     return(
                     <Card className={classes.entryCard} key={entry.id}>
