@@ -40,8 +40,8 @@ const EntryForm: React.FC = () => {
                 fullWidth
                 name="user"
                 label="user"
-                error={!!errors.user}
-                helperText={errors.user ? errors.user.message : ''}
+                // error={!!errors.user}
+                // helperText={errors.user ? errors.user.message : ''}
             />
             <TextField
                 inputRef={register}
@@ -51,8 +51,8 @@ const EntryForm: React.FC = () => {
                 fullWidth
                 name="message"
                 label="message"
-                error={!!errors.message}
-                helperText={errors.message ? errors.message.message : ''}
+                // error={!!errors.message}
+                // helperText={errors.message ? errors.message.message : ''}
             />
             <Box display="flex" justifyContent="flex-end">
                 <Button type="submit" variant="contained" color="primary">

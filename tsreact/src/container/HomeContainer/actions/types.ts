@@ -3,15 +3,22 @@ export const GET_MESSAGE_SUCCESS = 'GET_MESSAGE_SUCCESS'
 export const GET_MESSAGE_FAIL = 'GET_MESSAGE_FAIL'
 
 
-export interface HomeType {
-    mess: Message[]
+export type HomeType = {
+    mess: Message[],
+    ping: PingType
 }
 
-export interface Message {
-    id?: number
-    user?: string
-    message?: string
-    timestamp?: string
+export type Message = {
+    messi: {
+        id?: number
+        user?: string
+        message?: string
+        timestamp?: string
+    }
+}
+
+export type PingType = {
+    pingi?: string
 }
 
 export interface GetMessageAction {
@@ -20,7 +27,7 @@ export interface GetMessageAction {
 
 export interface GetMessageSuccessAction {
     type: typeof GET_MESSAGE_SUCCESS,
-    payload: HomeType
+    payload: HomeType,
 }
 
 export interface GetMessageFailAction {

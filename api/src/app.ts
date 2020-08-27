@@ -43,20 +43,23 @@ app.use(
 
 app.get('/', (req: Request, res: Response) => {
     console.log('call')
-    const data = [
-    {
-        id: 0,
-        user: 'Hello World',
-        message: 'From backend',
-        timestamp: Date()
-    },
-    {
-        id: 1,
-        user: 'Hello World 2',
-        message: 'From backend 2',
-        timestamp: Date()
-    },
-]
+    const data = {
+        mess: [
+            {
+                id: 0,
+                user: 'Hello World',
+                message: 'From backend',
+                timestamp: Date()
+            },
+            {
+                id: 1,
+                user: 'Hello World 2',
+                message: 'From backend 2',
+                timestamp: Date()
+            },
+        ],
+        ping: '404'
+    }
     res.send(JSON.stringify(data));
 });
 

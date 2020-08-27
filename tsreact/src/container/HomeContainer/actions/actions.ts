@@ -11,7 +11,7 @@ export const getMessage = () => async(dispatch: Dispatch<HomeDispatchTypes>) => 
       const res = await axios.get(`${BASE_URL}`);
       dispatch({
         type: GET_MESSAGE_SUCCESS,
-        payload: res.data
+        payload: res.data,
       })
     } catch(e) {
       dispatch({
