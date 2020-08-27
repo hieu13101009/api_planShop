@@ -11,7 +11,6 @@ import Home from '../../views/Home';
 
 const App: React.FC = () => {
     const classes = useStyles();
-    
     return (
         <div className={classes.root}>
             <AppBar position="static">
