@@ -15,7 +15,7 @@ const HOST = '0.0.0.0';
 // App
 
 const app: Express = express();
-// app.use(morgan());
+app.use(morgan('tiny'));
 app.use(express.json());
 app.use(cors({
     origin: '*'
@@ -41,7 +41,7 @@ app.use(
     speedLimiter, 
     checkTokenSetUser);
 
-app.get('/', (req: Request, res: Response) => {
+app.get('/api/list', (req: Request, res: Response) => {
     console.log('call')
     const data = {
         mess: [
