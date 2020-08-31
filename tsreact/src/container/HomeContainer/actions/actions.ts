@@ -8,12 +8,15 @@ export const getMessage = () => async(dispatch: Dispatch<HomeDispatchTypes>) => 
       dispatch({
         type: GET_MESSAGE
       })
-      const res = await axios.get(`${BASE_URL}`);
+      console.log('BASE_URL',`${BASE_URL}`)
+      const res = await axios.get(`${BASE_URL}api/list`);
+      console.log('res',res);
       dispatch({
         type: GET_MESSAGE_SUCCESS,
         payload: res.data,
       })
     } catch(e) {
+      console.log('e',e)
       dispatch({
         type: GET_MESSAGE_FAIL
       })
