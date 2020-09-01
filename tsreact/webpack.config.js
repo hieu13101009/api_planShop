@@ -11,21 +11,22 @@ module.exports = {
         filename: 'bundle.js',
     },
     devServer: {
-        port: 9090,
-        historyApiFallback: true,
-        watchOptions: { aggregateTimeout: 300, poll: 1000 },
+        port: 91,
+        disableHostCheck: true,
+        host: 'localhost',
+        open: true,
         proxy: {
             '/api': {
                 target: 'http://192.168.33.21:8080',
-                secure: false,
-            },
+                secure: false
+            }
         },
+        open: 'Chrome',
         headers: {
             'Access-Control-Allow-Origin': '*',
             'Access-Control-Allow-Headers': '*',
             'Access-Control-Allow-Methods': '*',
         },
-        Accept: "application/json, text/plain, */*"
     },
 
     // adding .ts and .tsx to resolve.extensions will help babel look for .ts and .tsx files to transpile
