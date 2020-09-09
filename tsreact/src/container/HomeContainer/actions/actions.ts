@@ -9,7 +9,7 @@ export const getMessage = () => async(dispatch: Dispatch<HomeDispatchTypes>) => 
         type: GET_MESSAGE
       })
       console.log('BASE_URL',`${BASE_URL}`)
-      const res = await axios.get(`${BASE_URL}api/list`);
+      const res = await axios.get(`${BASE_URL}/api/list`);
       console.log('res',res);
       dispatch({
         type: GET_MESSAGE_SUCCESS,

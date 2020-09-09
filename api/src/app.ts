@@ -15,11 +15,11 @@ const HOST = '0.0.0.0';
 // App
 
 const app: Express = express();
-app.use(morgan('tiny'));
+app.use(morgan('dev'));
 app.use(express.json());
-// app.use(cors({
-//     origin: '*'
-// }))
+app.use(cors({
+    origin: '*'
+}))
 
 const limiter = rateLimit({
     windowMs: 15 * 60 * 1000, // 15 minutes
