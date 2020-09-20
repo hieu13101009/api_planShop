@@ -6,6 +6,7 @@ import Box from '@material-ui/core/Box';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers';
+import Typography from '@material-ui/core/Typography';
 import {Message}  from '../../container/HomeContainer/actions/types';
 import {getMessage} from "../../container/HomeContainer/actions/actions";
 import useStyles from './styles';
@@ -28,38 +29,67 @@ const EntryForm: React.FC = () => {
 
     // console.log('errors',errors);
     return (
-        <form
-            onSubmit={handleSubmit(onSubmit)}
-            className={classes.formContainer}
-            noValidate
-            autoComplete="off"
-        >
-            <TextField
-                inputRef={register}
-                variant="outlined"
-                fullWidth
-                name="user"
-                label="user"
-                // error={!!errors.user}
-                // helperText={errors.user ? errors.user.message : ''}
-            />
-            <TextField
-                inputRef={register}
-                variant="outlined"
-                multiline
-                rows={3}
-                fullWidth
-                name="message"
-                label="message"
-                // error={!!errors.message}
-                // helperText={errors.message ? errors.message.message : ''}
-            />
-            <Box display="flex" justifyContent="flex-end">
-                <Button type="submit" variant="contained" color="primary">
+        <Box>
+            <Box 
+                display="flex"
+                bgcolor="grey.300"
+                alignItems="center"
+                justifyContent="center"
+                p={1}
+                m={1}
+            >
+                <Button type="submit" variant="contained" color="primary" fullWidth>
                     add entry
                 </Button>
             </Box>
-        </form>
+
+                <Box 
+                    display="flex"
+                    bgcolor="grey.300"
+                    alignItems="center"
+                    justifyContent="center"
+                    p={1}
+                    m={1}
+                >
+                    <form
+                        onSubmit={handleSubmit(onSubmit)}
+                        className={classes.formContainer}
+                        noValidate
+                        autoComplete="off"
+                    >
+                        <TextField
+                            inputRef={register}
+                            variant="outlined"
+                            fullWidth
+                            name="user"
+                            label="user"
+                            // error={!!errors.user}
+                            // helperText={errors.user ? errors.user.message : ''}
+                        />
+                        
+                        <Typography variant="body2" color="textSecondary" component="p">
+                            Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging
+                            across all continents except Antarctica
+                        </Typography>
+                        <TextField
+                            inputRef={register}
+                            variant="outlined"
+                            multiline
+                            rows={3}
+                            fullWidth
+                            name="message"
+                            label="message"
+                            // error={!!errors.message}
+                            // helperText={errors.message ? errors.message.message : ''}
+                        />
+                        <Box display="flex" justifyContent="flex-end">
+                            <Button type="submit" variant="contained" color="primary" fullWidth>
+                                add entry
+                            </Button>
+                        </Box>
+                    </form>
+                </Box>
+            </Box>
     );
 };
 
