@@ -8,6 +8,7 @@ import Container from '@material-ui/core/Container';
 
 import useStyles from './styles';
 import Home from '../../views/Home';
+import p5js from '../../views/P5js';
 
 const App: React.FC = () => {
     const classes = useStyles();
@@ -23,17 +24,15 @@ const App: React.FC = () => {
                     <Button component={Link} to="/" color="inherit">
                         Home
                     </Button>
-                    <Button component={Link} to="/about" color="inherit">
-                        About
+                    <Button component={Link} to="/p5js" color="inherit">
+                        p5js
                     </Button>
                 </Toolbar>
             </AppBar>
             <Container maxWidth="md">
                 <Switch>
                     <Route exact path="/" component={Home} />
-                    <Route exact path="/about">
-                        <h1>About Page</h1>
-                    </Route>
+                    <Route path="/p5js" component={p5js} />
                     <Redirect to="/" />
                 </Switch>
             </Container>
