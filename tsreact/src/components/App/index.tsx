@@ -21,7 +21,7 @@ const App: React.FC = () => {
                         🍔
                         </span>
                     </IconButton>
-                    <Button component={Link} to="/" color="inherit">
+                    <Button component={Link} to="/home" color="inherit">
                         Home
                     </Button>
                     <Button component={Link} to="/p5js" color="inherit">
@@ -32,7 +32,7 @@ const App: React.FC = () => {
             <Container maxWidth="md">
                 <Switch>
                     <Route exact path="/" component={Home} />
-                    <Route path="/p5js" component={p5js} />
+                    <Route exact path="/p5js" component={p5js} />
                     <Redirect to="/" />
                 </Switch>
             </Container>

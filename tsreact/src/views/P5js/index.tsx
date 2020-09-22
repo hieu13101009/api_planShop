@@ -1,22 +1,13 @@
 import React from 'react';
 import {createUseStyles} from 'react-jss'
-
-const useStyles = createUseStyles({
-    app: {
-        display: 'flex',
-        width: '100%',
-        height: '100%',
-        justifyContent: 'center',
-        alignItems: 'center',
-    }
-})
+import useStyles from './style';
+import Grid from './Grid';
 const P5js: React.FC = () => {
     const  classes = useStyles();
 
     return (
         <div className={classes.app}>
-            hello w
-            {/* <Grid /> */}
+            <Grid />
         </div>
     )
 }
