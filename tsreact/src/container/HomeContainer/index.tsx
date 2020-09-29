@@ -1,7 +1,7 @@
 import React from 'react';
 import Home from '../../views/Home/index';
 
-const homeReducers = () => {
+const p5jsReducer = () => {
 
     return (
         <div>
@@ -10,4 +10,4 @@ const homeReducers = () => {
     );
 };
 
-export default homeReducers;
+export default p5jsReducer;
